@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // add init
     var mergedData = [Item]()
     var localData = [Date]()
     
@@ -26,16 +27,13 @@ class ViewController: UIViewController {
                 print("Error: \(String(describing: error))")
             } else {
                 do {
-//                    let json = try JSONSerialization.jsonObject(with: data!)
-//                    print("json: \(json)")
                     
                     let response = try JSONDecoder().decode(allResponse.self, from: data!)
                     let f1ResultArray = response.f1Results
                     
-                    
                     print("*****F1")
                     for i in f1ResultArray {
-                        
+                        print("f1")
                         print(i.publicationDate)
                         print(i.seconds)
                         print(i.tournament)
@@ -43,12 +41,11 @@ class ViewController: UIViewController {
                         print("")
                     }
 
-
                     print("")
                     let tennisResultArray = response.Tennis
                     print("*******Teniis")
                     for i in tennisResultArray {
-
+                        print("Tennis")
                         print(i.looser)
                         print(i.numberOfSets)
                         print(i.publicationDate)
@@ -61,7 +58,7 @@ class ViewController: UIViewController {
                     let nbaResultArray = response.nbaResults
                     print("******NBA")
                     for i in nbaResultArray {
-
+                        print("NBA")
                         print(i.gameNumber)
                         print(i.looser)
                         print(i.publicationDate)
@@ -69,38 +66,11 @@ class ViewController: UIViewController {
                         print(i.winner)
                         print("")
                         
-//                        let dateConverted = String2Date().getDate(strDate: i.publicationDate)
                         
                     }
 
-                    print("")
-                    print("********** mergedData *****************")
                     self.mergedData = f1ResultArray + tennisResultArray + nbaResultArray
-                    print(self.mergedData)
-                    print("")
-                    print("+++++++++++++++")
-
                     
-                    // Convert String publicationDate to Date/Time type
-//                    for j in self.mergedData {
-//                        guard let dateConverted = String2Date().getDate(strDate: j.publicationDate) else { return }
-//                        print("j.publicationDate: \(j.publicationDate)")
-//                        print("dateConverted: \(String(describing: dateConverted))")
-//
-//
-////                        self.localData.append(j.publicationDate)
-////                        self.localData.append(dateConverted)
-//
-//                    }
-//
-//                    print("")
-//                    print("localData")
-//                    print(self.localData)
-                    
-                    // Sort mergedData array by publicationDate
-//                    let sortedData = self.mergedData.sorted {
-//                        $0.publicationDate < $1.publicationDate
-//                    }
                     let dateFormatter = DateFormatter()
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     dateFormatter.timeZone = TimeZone(abbreviation: "UTF")
@@ -109,7 +79,18 @@ class ViewController: UIViewController {
                     
                     print("")
                     print("**************")
-                    print(sortedData)
+                    for i in sortedData {
+                        print("publicationDate: \(i.publicationDate)")
+                        print("tournament: \(i.tournament)")
+                        print("winner: \(i.winner)")
+                        print("seconds: \(String(describing: i.seconds))")
+                        print("looser: \(String(describing: i.looser))")
+                        print("mvp: \(String(describing: i.mvp))")
+                        print("numberOfSets: \(String(describing: i.numberOfSets))")
+                        print("gameNumber: \(String(describing: i.gameNumber))")
+                        
+                        print("")
+                    }
                     
                     
                 } catch {
@@ -120,76 +101,19 @@ class ViewController: UIViewController {
         
         })
         task.resume()
-
-
-//        let json = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, AnyObject>
-
-
-
     }
     
-    
-//    func merge<T>(_ arrays: [T]...) -> [T] {
-//        guard let longest = arrays.max(by: { $0.count < $1.count })?.count else { return [] }
-//        var result = [T]()
-//        for index in 0..<longest {
-//            for array in arrays {
-//                guard index < array.count else { continue }
-//                result.append(array[index])
-//            }
-//        }
-//        return result
-//    }
-    
-    
-//    func postApiCall() {
-//        guard let url = URL(string:"https://jsonplaceholder.typicode.com/posts") else { return }
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        let body: [String: AnyHashable] = [
-//            "userId": 1,
-//            "title": "Hello from iOS Academy",
-//            "body": "Hello there?"
-//        ]
-//
-//        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
-//
-//        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
-//            guard let data = data, error == nil else { return }
-//            do {
-//                let response = try JSONDecoder().decode(Response.self, from: data)
-//                print(response)
-//
-////                let json = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, AnyObject>
-////                print(json)
-//            } catch {
-//                print(error)
-//            }
-//        }
-//        task.resume()
-//    }
-    
-
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//     postApiCall()
+
         getApiCall()
         
     }
 
 }
 
-//struct Response: Codable {
-//    let body: String
-//    let id: Int
-//    let title: String
-//    let userId: Int
-//
-//}
 
 struct allResponse: Codable {
     let nbaResults: [nbaResults]
@@ -200,58 +124,77 @@ struct allResponse: Codable {
 
 
 struct nbaResults: Codable {
-    let gameNumber: Int
-    let looser: String
-    let mvp: String
+    let gameNumber: Int?
+    let looser: String?
+    let mvp: String?
     let publicationDate: String
     let tournament: String
     let winner: String
     
-//    let numberOfSets: Int?
-//    let seconds: Double?
+    let numberOfSets: Int?
+    let seconds: Double?
 }
 
 struct Tennis: Codable {
-    let looser: String
-    let numberOfSets: Int
+    let looser: String?
+    let numberOfSets: Int?
     let publicationDate: String
     let tournament: String
     let winner: String
     
-//    let gameNumber: Int?
-//    let mvp: String?
-//    let seconds: Double?
+    let gameNumber: Int?
+    let mvp: String?
+    let seconds: Double?
 }
 
 struct f1Results: Codable {
     let publicationDate: String
-    let seconds: Double
+    let seconds: Double?
     let tournament: String
     let winner: String
     
-//    let gameNumber: Int?
-//    let looser: String?
-//    let mvp: String?
-//    let numberOfSets: Int?
+    let gameNumber: Int?
+    let looser: String?
+    let mvp: String?
+    let numberOfSets: Int?
 }
 
 
 
 
 protocol Item  {
-//    var gameNumber: Int? { get }
-//    var looser: String? { get }
-//    var mvp: String? { get }
-//    var numberOfSets: Int? { get }
     var publicationDate: String  { get }
-//    var seconds: Double?  { get }
-//    var tournament: String  { get }
-//    var winner: String?  { get }
+    var tournament: String  { get }
+    var winner: String  { get }
+
+    var seconds: Double?  { get }
+    var gameNumber: Int? { get }
+    var looser: String? { get }
+    var mvp: String? { get }
+    var numberOfSets: Int? { get }
 }
+
 
 extension f1Results: Item {}
 extension Tennis: Item {}
 extension nbaResults: Item {}
+
+
+
+/*
+ - Roland Garros: Rafael Nadal wins against Schwartzman in 3 sets
+ - Roland Garros: Novak Djokovic wins against Schwartzman in 5 sets
+ "\(tournament): \(winner) wins against \(looser) in \(numberOfSets) sets"
+
+ - Lewis Hamilton wins Silverstone Grand Prix by 5.856 seconds
+ "\(winner) wins \(tounament) by \(seconds)"
+
+ - Lebron James leads Lakers to game 4 win in the NBA playoffs
+ "\(mvp) leads \(winner) to game \(gameNumber) win in the \(tournament)"
+
+
+
+ */
 
 
 
@@ -346,33 +289,6 @@ extension nbaResults: Item {}
 
 
 
-/*
- +++++++++++++++
- May 9, 2020 8:09:03 PM
- Apr 14, 2020 8:09:03 PM
- Mar 15, 2020 8:09:03 PM
- May 9, 2020 11:15:15 PM
- May 9, 2020 2:00:40 PM
- May 8, 2020 4:33:17 PM
- May 9, 2020 9:15:15 AM
- May 7, 2020 3:15:00 PM
- May 5, 2020 1:34:15 PM
- May 3, 2020 9:15:33 PM
- May 2, 2020 6:07:03 AM
-
- +++++++++++++++
- Apr 14, 2020 8:09:03 PM
- Mar 15, 2020 8:09:03 PM
- May 2, 2020 6:07:03 AM
- May 3, 2020 9:15:33 PM
- May 5, 2020 1:34:15 PM
- May 7, 2020 3:15:00 PM
- May 8, 2020 4:33:17 PM
- May 9, 2020 11:15:15 PM
- May 9, 2020 2:00:40 PM
- May 9, 2020 8:09:03 PM
- May 9, 2020 9:15:15 AM
- */
 
 class String2Date {
     
