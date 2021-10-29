@@ -33,27 +33,12 @@ class ViewController: UIViewController {
                     let f1ResultArray = response.f1Results
                     
                     for i in f1ResultArray {
-//                        i.sportsName = "f1"
-//                        print(i.sportsName)
-//                        print(i.publicationDate)
-//                        print(i.seconds)
-//                        print(i.tournament)
-//                        print(i.winner)
-//                        print("")
                         let headLine =  "\(i.winner) wins \(i.tournament) by \(i.seconds)"
                         self.newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
                     }
 
                     let tennisResultArray = response.Tennis
                     for i in tennisResultArray {
-//                        i.sportsName = "Tennis"
-//                        print(i.sportsName)
-//                        print(i.looser)
-//                        print(i.numberOfSets)
-//                        print(i.publicationDate)
-//                        print(i.tournament)
-//                        print(i.winner)
-//                        print("")
                         let headLine =  "\(i.tournament): \(i.winner) wins against \(String(describing: i.looser)) in \(String(describing: i.numberOfSets)) sets"
                         self.newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
 
@@ -61,22 +46,11 @@ class ViewController: UIViewController {
 
                     let nbaResultArray = response.nbaResults
                     for i in nbaResultArray {
-//                        i.sportsName = "NBA"
-//                        print(i.sportsName)
-//                        print(i.gameNumber)
-//                        print(i.looser)
-//                        print(i.publicationDate)
-//                        print(i.tournament)
-//                        print(i.winner)
-//                        print("")
                         
                         let headLine = "\(i.mvp) leads \(i.winner) to game \(i.gameNumber) win in the \(i.tournament)"
                         self.newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
                     }
 
- 
-                    print("")
-                    print("***** newsData ******")
                     for i in self.newsData {
                         print(i)
                         print("")
@@ -88,13 +62,9 @@ class ViewController: UIViewController {
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     dateFormatter.timeZone = TimeZone(abbreviation: "UTF")
                     dateFormatter.dateFormat = "MM dd, yyyy HH:mm:ss a"
-//                    let sortedData = self.mergedData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedAscending })
                     let sortedData = self.newsData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedDescending })
 
                     
-                    print("")
-                    print("")
-                    print("**************")
                     for i in sortedData {
                         print("publicationDate: \(i.publicationDate)")
                         print("headLine: \(i.headLine))")
@@ -145,10 +115,6 @@ struct nbaResults: Codable {
     let publicationDate: String
     let tournament: String
     let winner: String
-    
-//    let numberOfSets: Int?
-//    let seconds: Double?
-//    var sportsName: String?
 }
 
 struct Tennis: Codable {
@@ -157,11 +123,6 @@ struct Tennis: Codable {
     let publicationDate: String
     let tournament: String
     let winner: String
-    
-//    let gameNumber: Int?
-//    let mvp: String?
-//    let seconds: Double?
-//    var sportsName: String?
 }
 
 struct f1Results: Codable {
@@ -169,28 +130,13 @@ struct f1Results: Codable {
     let seconds: Double?
     let tournament: String
     let winner: String
-    
-//    let gameNumber: Int?
-//    let looser: String?
-//    let mvp: String?
-//    let numberOfSets: Int?
-//    var sportsName: String?
 }
-
-
 
 
 protocol Item  {
     var publicationDate: String  { get }
     var tournament: String  { get }
     var winner: String  { get }
-
-//    var seconds: Double?  { get }
-//    var gameNumber: Int? { get }
-//    var looser: String? { get }
-//    var mvp: String? { get }
-//    var numberOfSets: Int? { get }
-//    var sportsName: String? { get }
 }
 extension f1Results: Item {}
 extension Tennis: Item {}
