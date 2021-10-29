@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     // add init
     var mergedData = [Item]()
     var localData = [Date]()
+    var newsData = [NewsData]()
     
     func getApiCall() {
         
@@ -31,73 +32,76 @@ class ViewController: UIViewController {
                     let response = try JSONDecoder().decode(allResponse.self, from: data!)
                     let f1ResultArray = response.f1Results
                     
-                    print("*****F1")
-                    
-                    for var i in f1ResultArray {
-                        i.sportsName = "f1"
-                        print(i.sportsName)
-                        print(i.publicationDate)
-                        print(i.seconds)
-                        print(i.tournament)
-                        print(i.winner)
-                        print("")
+                    for i in f1ResultArray {
+//                        i.sportsName = "f1"
+//                        print(i.sportsName)
+//                        print(i.publicationDate)
+//                        print(i.seconds)
+//                        print(i.tournament)
+//                        print(i.winner)
+//                        print("")
+                        let headLine =  "\(i.winner) wins \(i.tournament) by \(i.seconds)"
+                        self.newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
                     }
 
-                    print("")
                     let tennisResultArray = response.Tennis
-                    print("*******Tennis")
-                    for var i in tennisResultArray {
-                        i.sportsName = "Tennis"
-                        print(i.sportsName)
-                        print(i.looser)
-                        print(i.numberOfSets)
-                        print(i.publicationDate)
-                        print(i.tournament)
-                        print(i.winner)
-                        print("")
+                    for i in tennisResultArray {
+//                        i.sportsName = "Tennis"
+//                        print(i.sportsName)
+//                        print(i.looser)
+//                        print(i.numberOfSets)
+//                        print(i.publicationDate)
+//                        print(i.tournament)
+//                        print(i.winner)
+//                        print("")
+                        let headLine =  "\(i.tournament): \(i.winner) wins against \(String(describing: i.looser)) in \(String(describing: i.numberOfSets)) sets"
+                        self.newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
+
                     }
 
-                    print("")
                     let nbaResultArray = response.nbaResults
-                    print("******NBA")
-                    for var i in nbaResultArray {
-                        i.sportsName = "NBA"
-                        print(i.sportsName)
-                        print(i.gameNumber)
-                        print(i.looser)
-                        print(i.publicationDate)
-                        print(i.tournament)
-                        print(i.winner)
-                        print("")
+                    for i in nbaResultArray {
+//                        i.sportsName = "NBA"
+//                        print(i.sportsName)
+//                        print(i.gameNumber)
+//                        print(i.looser)
+//                        print(i.publicationDate)
+//                        print(i.tournament)
+//                        print(i.winner)
+//                        print("")
                         
-                        
+                        let headLine = "\(i.mvp) leads \(i.winner) to game \(i.gameNumber) win in the \(i.tournament)"
+                        self.newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
                     }
 
+ 
+                    print("")
+                    print("***** newsData ******")
+                    for i in self.newsData {
+                        print(i)
+                        print("")
+                    }
+                    
                     self.mergedData = f1ResultArray + tennisResultArray + nbaResultArray
                     
                     let dateFormatter = DateFormatter()
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     dateFormatter.timeZone = TimeZone(abbreviation: "UTF")
                     dateFormatter.dateFormat = "MM dd, yyyy HH:mm:ss a"
-                    let sortedData = self.mergedData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedAscending })
+//                    let sortedData = self.mergedData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedAscending })
+                    let sortedData = self.newsData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedDescending })
+
                     
                     print("")
                     print("")
                     print("**************")
                     for i in sortedData {
-                        print("sportsName: \(String(describing: i.sportsName))")
                         print("publicationDate: \(i.publicationDate)")
-                        print("tournament: \(i.tournament)")
-                        print("winner: \(i.winner)")
-                        print("seconds: \(String(describing: i.seconds))")
-                        print("looser: \(String(describing: i.looser))")
-                        print("mvp: \(String(describing: i.mvp))")
-                        print("numberOfSets: \(String(describing: i.numberOfSets))")
-                        print("gameNumber: \(String(describing: i.gameNumber))")
+                        print("headLine: \(i.headLine))")
 
                         print("")
                     }
-                    
+
                     
                 } catch {
                     print("Error: \(error)")
@@ -121,6 +125,11 @@ class ViewController: UIViewController {
 }
 
 
+struct NewsData {
+    let publicationDate: String
+    let headLine: String
+}
+
 struct allResponse: Codable {
     let nbaResults: [nbaResults]
     let Tennis: [Tennis]
@@ -137,9 +146,9 @@ struct nbaResults: Codable {
     let tournament: String
     let winner: String
     
-    let numberOfSets: Int?
-    let seconds: Double?
-    var sportsName: String?
+//    let numberOfSets: Int?
+//    let seconds: Double?
+//    var sportsName: String?
 }
 
 struct Tennis: Codable {
@@ -149,10 +158,10 @@ struct Tennis: Codable {
     let tournament: String
     let winner: String
     
-    let gameNumber: Int?
-    let mvp: String?
-    let seconds: Double?
-    var sportsName: String?
+//    let gameNumber: Int?
+//    let mvp: String?
+//    let seconds: Double?
+//    var sportsName: String?
 }
 
 struct f1Results: Codable {
@@ -161,11 +170,11 @@ struct f1Results: Codable {
     let tournament: String
     let winner: String
     
-    let gameNumber: Int?
-    let looser: String?
-    let mvp: String?
-    let numberOfSets: Int?
-    var sportsName: String?
+//    let gameNumber: Int?
+//    let looser: String?
+//    let mvp: String?
+//    let numberOfSets: Int?
+//    var sportsName: String?
 }
 
 
@@ -176,15 +185,13 @@ protocol Item  {
     var tournament: String  { get }
     var winner: String  { get }
 
-    var seconds: Double?  { get }
-    var gameNumber: Int? { get }
-    var looser: String? { get }
-    var mvp: String? { get }
-    var numberOfSets: Int? { get }
-    var sportsName: String? { get }
+//    var seconds: Double?  { get }
+//    var gameNumber: Int? { get }
+//    var looser: String? { get }
+//    var mvp: String? { get }
+//    var numberOfSets: Int? { get }
+//    var sportsName: String? { get }
 }
-
-
 extension f1Results: Item {}
 extension Tennis: Item {}
 extension nbaResults: Item {}
@@ -192,13 +199,16 @@ extension nbaResults: Item {}
 
 
 /*
+ F1
+ - Lewis Hamilton wins Silverstone Grand Prix by 5.856 seconds
+ "\(winner) wins \(tounament) by \(seconds)"
+
+ Tennis
  - Roland Garros: Rafael Nadal wins against Schwartzman in 3 sets
  - Roland Garros: Novak Djokovic wins against Schwartzman in 5 sets
  "\(tournament): \(winner) wins against \(looser) in \(numberOfSets) sets"
 
- - Lewis Hamilton wins Silverstone Grand Prix by 5.856 seconds
- "\(winner) wins \(tounament) by \(seconds)"
-
+ NBA
  - Lebron James leads Lakers to game 4 win in the NBA playoffs
  "\(mvp) leads \(winner) to game \(gameNumber) win in the \(tournament)"
 
