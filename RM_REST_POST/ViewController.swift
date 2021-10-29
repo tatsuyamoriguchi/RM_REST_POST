@@ -32,8 +32,10 @@ class ViewController: UIViewController {
                     let f1ResultArray = response.f1Results
                     
                     print("*****F1")
-                    for i in f1ResultArray {
-                        print("f1")
+                    
+                    for var i in f1ResultArray {
+                        i.sportsName = "f1"
+                        print(i.sportsName)
                         print(i.publicationDate)
                         print(i.seconds)
                         print(i.tournament)
@@ -43,22 +45,24 @@ class ViewController: UIViewController {
 
                     print("")
                     let tennisResultArray = response.Tennis
-                    print("*******Teniis")
-                    for i in tennisResultArray {
-                        print("Tennis")
+                    print("*******Tennis")
+                    for var i in tennisResultArray {
+                        i.sportsName = "Tennis"
+                        print(i.sportsName)
                         print(i.looser)
                         print(i.numberOfSets)
                         print(i.publicationDate)
                         print(i.tournament)
                         print(i.winner)
-                        
+                        print("")
                     }
 
                     print("")
                     let nbaResultArray = response.nbaResults
                     print("******NBA")
-                    for i in nbaResultArray {
-                        print("NBA")
+                    for var i in nbaResultArray {
+                        i.sportsName = "NBA"
+                        print(i.sportsName)
                         print(i.gameNumber)
                         print(i.looser)
                         print(i.publicationDate)
@@ -78,8 +82,10 @@ class ViewController: UIViewController {
                     let sortedData = self.mergedData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedAscending })
                     
                     print("")
+                    print("")
                     print("**************")
                     for i in sortedData {
+                        print("sportsName: \(String(describing: i.sportsName))")
                         print("publicationDate: \(i.publicationDate)")
                         print("tournament: \(i.tournament)")
                         print("winner: \(i.winner)")
@@ -88,7 +94,7 @@ class ViewController: UIViewController {
                         print("mvp: \(String(describing: i.mvp))")
                         print("numberOfSets: \(String(describing: i.numberOfSets))")
                         print("gameNumber: \(String(describing: i.gameNumber))")
-                        
+
                         print("")
                     }
                     
@@ -133,6 +139,7 @@ struct nbaResults: Codable {
     
     let numberOfSets: Int?
     let seconds: Double?
+    var sportsName: String?
 }
 
 struct Tennis: Codable {
@@ -145,6 +152,7 @@ struct Tennis: Codable {
     let gameNumber: Int?
     let mvp: String?
     let seconds: Double?
+    var sportsName: String?
 }
 
 struct f1Results: Codable {
@@ -157,6 +165,7 @@ struct f1Results: Codable {
     let looser: String?
     let mvp: String?
     let numberOfSets: Int?
+    var sportsName: String?
 }
 
 
@@ -172,6 +181,7 @@ protocol Item  {
     var looser: String? { get }
     var mvp: String? { get }
     var numberOfSets: Int? { get }
+    var sportsName: String? { get }
 }
 
 
