@@ -9,16 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-//     Need to use generic? [[String: T?]]()
-    //        [["gameNumber": Int?], ["looser": String?], ["mvp": String?], ["numberOfSets": Int?], ["publicationDate": String], ["seconds": Double?], ["tournament": String], ["winner": String]]
-        
-
     
     var mergedData = [Item]()
+    var localData = [Date]()
     
-    
-
     func getApiCall() {
         
         guard let url = URL(string: "https://ancient-wood-1161.getsandbox.com/results") else { return }
@@ -42,8 +36,6 @@ class ViewController: UIViewController {
                     print("*****F1")
                     for i in f1ResultArray {
                         
-//                        self.mergedData.append(i as AnyObject)
-                        
                         print(i.publicationDate)
                         print(i.seconds)
                         print(i.tournament)
@@ -57,8 +49,6 @@ class ViewController: UIViewController {
                     print("*******Teniis")
                     for i in tennisResultArray {
 
-//                        self.mergedData.append(i as AnyObject)
-
                         print(i.looser)
                         print(i.numberOfSets)
                         print(i.publicationDate)
@@ -71,7 +61,6 @@ class ViewController: UIViewController {
                     let nbaResultArray = response.nbaResults
                     print("******NBA")
                     for i in nbaResultArray {
-//                        self.mergedData.append(i as AnyObject)
 
                         print(i.gameNumber)
                         print(i.looser)
@@ -79,10 +68,13 @@ class ViewController: UIViewController {
                         print(i.tournament)
                         print(i.winner)
                         print("")
+                        
+//                        let dateConverted = String2Date().getDate(strDate: i.publicationDate)
+                        
                     }
 
                     print("")
-                    print("*****************")
+                    print("********** mergedData *****************")
                     self.mergedData = f1ResultArray + tennisResultArray + nbaResultArray
                     print(self.mergedData)
                     print("")
@@ -90,45 +82,34 @@ class ViewController: UIViewController {
 
                     
                     // Convert String publicationDate to Date/Time type
+//                    for j in self.mergedData {
+//                        guard let dateConverted = String2Date().getDate(strDate: j.publicationDate) else { return }
+//                        print("j.publicationDate: \(j.publicationDate)")
+//                        print("dateConverted: \(String(describing: dateConverted))")
+//
+//
+////                        self.localData.append(j.publicationDate)
+////                        self.localData.append(dateConverted)
+//
+//                    }
+//
+//                    print("")
+//                    print("localData")
+//                    print(self.localData)
                     
+                    // Sort mergedData array by publicationDate
+//                    let sortedData = self.mergedData.sorted {
+//                        $0.publicationDate < $1.publicationDate
+//                    }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.timeZone = TimeZone(abbreviation: "UTF")
+                    dateFormatter.dateFormat = "MM dd, yyyy HH:mm:ss a"
+                    let sortedData = self.mergedData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedAscending })
                     
-                    let sortedData = self.mergedData.sorted {
-                        $0.publicationDate < $1.publicationDate
-                    }
-                    
-                    for j in sortedData {
-                        print(j.publicationDate)
-                    }
-                     
-                    /*
-                     +++++++++++++++
-                     May 9, 2020 8:09:03 PM
-                     Apr 14, 2020 8:09:03 PM
-                     Mar 15, 2020 8:09:03 PM
-                     May 9, 2020 11:15:15 PM
-                     May 9, 2020 2:00:40 PM
-                     May 8, 2020 4:33:17 PM
-                     May 9, 2020 9:15:15 AM
-                     May 7, 2020 3:15:00 PM
-                     May 5, 2020 1:34:15 PM
-                     May 3, 2020 9:15:33 PM
-                     May 2, 2020 6:07:03 AM
-                    
-                     +++++++++++++++
-                     Apr 14, 2020 8:09:03 PM
-                     Mar 15, 2020 8:09:03 PM
-                     May 2, 2020 6:07:03 AM
-                     May 3, 2020 9:15:33 PM
-                     May 5, 2020 1:34:15 PM
-                     May 7, 2020 3:15:00 PM
-                     May 8, 2020 4:33:17 PM
-                     May 9, 2020 11:15:15 PM
-                     May 9, 2020 2:00:40 PM
-                     May 9, 2020 8:09:03 PM
-                     May 9, 2020 9:15:15 AM
-                     */
-                    
-                    
+                    print("")
+                    print("**************")
+                    print(sortedData)
                     
                     
                 } catch {
@@ -148,57 +129,48 @@ class ViewController: UIViewController {
     }
     
     
-    func merge<T>(_ arrays: [T]...) -> [T] {
-        guard let longest = arrays.max(by: { $0.count < $1.count })?.count else { return [] }
-        var result = [T]()
-        for index in 0..<longest {
-            for array in arrays {
-                guard index < array.count else { continue }
-                result.append(array[index])
-            }
-        }
-        return result
-    }
+//    func merge<T>(_ arrays: [T]...) -> [T] {
+//        guard let longest = arrays.max(by: { $0.count < $1.count })?.count else { return [] }
+//        var result = [T]()
+//        for index in 0..<longest {
+//            for array in arrays {
+//                guard index < array.count else { continue }
+//                result.append(array[index])
+//            }
+//        }
+//        return result
+//    }
     
     
-    func postApiCall() {
-        guard let url = URL(string:"https://jsonplaceholder.typicode.com/posts") else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let body: [String: AnyHashable] = [
-            "userId": 1,
-            "title": "Hello from iOS Academy",
-            "body": "Hello there?"
-        ]
-        
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
-            guard let data = data, error == nil else { return }
-            do {
-                let response = try JSONDecoder().decode(Response.self, from: data)
-                print(response)
-
-//                let json = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, AnyObject>
-//                print(json)
-            } catch {
-                print(error)
-            }
-        }
-        task.resume()
-        
-        
-    }
+//    func postApiCall() {
+//        guard let url = URL(string:"https://jsonplaceholder.typicode.com/posts") else { return }
+//
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        let body: [String: AnyHashable] = [
+//            "userId": 1,
+//            "title": "Hello from iOS Academy",
+//            "body": "Hello there?"
+//        ]
+//
+//        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+//
+//        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+//            guard let data = data, error == nil else { return }
+//            do {
+//                let response = try JSONDecoder().decode(Response.self, from: data)
+//                print(response)
+//
+////                let json = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, AnyObject>
+////                print(json)
+//            } catch {
+//                print(error)
+//            }
+//        }
+//        task.resume()
+//    }
     
-    struct Response: Codable {
-        let body: String
-        let id: Int
-        let title: String
-        let userId: Int
-
-    }
 
 
     
@@ -209,9 +181,15 @@ class ViewController: UIViewController {
         
     }
 
-
-
 }
+
+//struct Response: Codable {
+//    let body: String
+//    let id: Int
+//    let title: String
+//    let userId: Int
+//
+//}
 
 struct allResponse: Codable {
     let nbaResults: [nbaResults]
@@ -220,16 +198,7 @@ struct allResponse: Codable {
 }
 
 
-/*
- var gameNumber: Int? { get }
-  var looser: String? { get }
-  var mvp: String? { get }
-  var numberOfSets: Int? { get }
-  var publicationDate: String  { get }
-  var seconds: Double?  { get }
-  var tournament: String  { get }
-  var winner: String?  { get }
- */
+
 struct nbaResults: Codable {
     let gameNumber: Int
     let looser: String
@@ -377,3 +346,43 @@ extension nbaResults: Item {}
 
 
 
+/*
+ +++++++++++++++
+ May 9, 2020 8:09:03 PM
+ Apr 14, 2020 8:09:03 PM
+ Mar 15, 2020 8:09:03 PM
+ May 9, 2020 11:15:15 PM
+ May 9, 2020 2:00:40 PM
+ May 8, 2020 4:33:17 PM
+ May 9, 2020 9:15:15 AM
+ May 7, 2020 3:15:00 PM
+ May 5, 2020 1:34:15 PM
+ May 3, 2020 9:15:33 PM
+ May 2, 2020 6:07:03 AM
+
+ +++++++++++++++
+ Apr 14, 2020 8:09:03 PM
+ Mar 15, 2020 8:09:03 PM
+ May 2, 2020 6:07:03 AM
+ May 3, 2020 9:15:33 PM
+ May 5, 2020 1:34:15 PM
+ May 7, 2020 3:15:00 PM
+ May 8, 2020 4:33:17 PM
+ May 9, 2020 11:15:15 PM
+ May 9, 2020 2:00:40 PM
+ May 9, 2020 8:09:03 PM
+ May 9, 2020 9:15:15 AM
+ */
+
+class String2Date {
+    
+    func getDate(strDate: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM dd, yyyy HH:mm:ss a"
+        let date = dateFormatter.date(from: strDate)
+        
+        return date
+    }
+    
+}
