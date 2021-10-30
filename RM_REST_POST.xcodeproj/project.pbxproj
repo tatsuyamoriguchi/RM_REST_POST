@@ -20,8 +20,6 @@
 		8C74C1C5272C8D10005879BF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1C4272C8D10005879BF /* DataModel.swift */; };
 		8C74C1C7272C8D8B005879BF /* String2Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1C6272C8D8B005879BF /* String2Date.swift */; };
 		8C74C1C8272C8D8B005879BF /* String2Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1C6272C8D8B005879BF /* String2Date.swift */; };
-		8C74C1CD272C8E5A005879BF /* GetApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1CC272C8E5A005879BF /* GetApiCall.swift */; };
-		8C74C1CE272C8E5A005879BF /* GetApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1CC272C8E5A005879BF /* GetApiCall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +48,6 @@
 		8C6D9B6E272CBF5B00CFB8FC /* SportsNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsNewsViewController.swift; sourceTree = "<group>"; };
 		8C74C1C4272C8D10005879BF /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8C74C1C6272C8D8B005879BF /* String2Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String2Date.swift; sourceTree = "<group>"; };
-		8C74C1CC272C8E5A005879BF /* GetApiCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiCall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +100,6 @@
 				8C00E6252728C15800D83515 /* Info.plist */,
 				8C74C1C4272C8D10005879BF /* DataModel.swift */,
 				8C74C1C6272C8D8B005879BF /* String2Date.swift */,
-				8C74C1CC272C8E5A005879BF /* GetApiCall.swift */,
 			);
 			path = RM_REST_POST;
 			sourceTree = "<group>";
@@ -220,7 +216,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C36E8E82728EA4200CB1B0F /* AppDelegate.swift in Sources */,
-				8C74C1CD272C8E5A005879BF /* GetApiCall.swift in Sources */,
 				8C74C1C5272C8D10005879BF /* DataModel.swift in Sources */,
 				8C00E61C2728C15100D83515 /* ViewController.swift in Sources */,
 				8C00E61A2728C15100D83515 /* SceneDelegate.swift in Sources */,
@@ -235,7 +230,6 @@
 			files = (
 				8C00E62F2728C15800D83515 /* RM_REST_POSTTests.swift in Sources */,
 				8C6D9B70272CBF5B00CFB8FC /* SportsNewsViewController.swift in Sources */,
-				8C74C1CE272C8E5A005879BF /* GetApiCall.swift in Sources */,
 				8C74C1C8272C8D8B005879BF /* String2Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

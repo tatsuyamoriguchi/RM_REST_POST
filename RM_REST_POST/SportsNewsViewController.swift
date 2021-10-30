@@ -87,13 +87,8 @@ extension SportsNewsViewController {
                     }
 
 
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                    dateFormatter.timeZone = TimeZone(abbreviation: "UTF")
-                    dateFormatter.dateFormat = "MM dd, yyyy HH:mm:ss a"
-
-                    self.sortedData = newsData.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedDescending })
-
+                    // Sort data by String Date
+                    self.sortedData = String2Date().sortByDateString(data: newsData)
 
                     // Reload tableView in main thread to reflect downloaded and sorted JSON data
                     DispatchQueue.main.async {
