@@ -22,8 +22,6 @@ class ViewController: UIViewController {
         getNewsButton.setTitleColor(.black, for: .normal)
         getNewsButton.frame = CGRect(x: 100, y: 200, width: 200, height: 60)
         getNewsButton.layer.cornerRadius = 20
-       
-
         
     }
    
