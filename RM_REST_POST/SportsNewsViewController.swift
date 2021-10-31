@@ -13,9 +13,14 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pickerView: UIPickerView!
 
-    // sortedData is generated from getApiCall func of an extension in GetApiCall.swift
+    // sortedData is generated from getApiCall func
     var sortedData = [NewsData]()
+    // String date data, MMMMddyyyy will be stored in dateList array for pickerView
     var dateList = [String]()
+    //
+    var dateSelected: String = ""
+    // NewsData array to filter news by date for tableView according to date selected in pickerView
+    var dailyData = [NewsData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,59 +33,29 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        
         // Calling an extension funcion in GetApiCall.swift to get data from API
         self.getApiCall()
-            
+//        dateSelected = dateList[0]
+//        sortedData = sortedData.filter {$0.date4PickerView == dateSelected }
 
-        
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortedData.count
+        return dailyData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
-        cell.textLabel?.text = sortedData[indexPath.row].headLine
-        cell.detailTextLabel?.text = sortedData[indexPath.row].publicationDate
+        cell.textLabel?.text = dailyData[indexPath.row].headLine
+        cell.detailTextLabel?.text = dailyData[indexPath.row].publicationDate
         
         return cell
     }
     
 }
-
-/*
- struct NewsData {
-     let publicationDate: String
-     let date4PickerView: String
-     let headLine: String
- }
- */
-
-
-
-//extension SportsNewsViewController {
-//    
-//    func extractDate4Picker(data: [NewsData]) -> Array<String> {
-//        var output = [String]()
-//        for i in data {
-//            //if output.contains(i.date4PickerView) == false {
-//            print("hello")
-//            print(i.date4PickerView)
-//            output.append(i.date4PickerView)
-//            //}
-//        }
-//        print("output: \(output)")
-//        return output
-//    }
-//}
-
-
-
 
 extension SportsNewsViewController: UIPickerViewDataSource {
 
@@ -97,6 +72,10 @@ extension SportsNewsViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return dateList[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //newsList = sortedData[row]
     }
 
 }

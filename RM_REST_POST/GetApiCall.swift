@@ -56,16 +56,24 @@ extension SportsNewsViewController {
 
                     // Sort data by String Date
                     self.sortedData = String2Date().sortByDateString(data: newsData)
+                    
+                    for i in self.sortedData {
+                        print(i)
+                    }
 
+                    
                     // Create a String array for pickerView rows
                     
                     // Reload tableView in main thread to reflect downloaded and sorted JSON data
                     DispatchQueue.main.async {
-                        
+                        // Populate MMMM dd yyyy string data into dateList array for pickerView rows
                         self.dateList = String2Date().extractDate4Picker(data: self.sortedData)
-                        print("self.dateList: \(self.dateList)")
-                        self.pickerView.reloadAllComponents()
+                        // Create dailyData by filtering sortedData by date selected. Select dateList[0] date
+                        // as default which is the most recent date.
+                        self.dailyData = self.sortedData.filter { $0.date4PickerView == self.dateList[0] }
 
+                        self.pickerView.reloadAllComponents()
+                        
                         // Comment to evaluators: Was getting a fatal error, "unexpectedly found nil" on tableView
                         // since using SportsNewsViewController(), instead of self.
                         self.tableView.reloadData()

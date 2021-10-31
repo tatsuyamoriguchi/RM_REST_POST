@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Date Time related helper functions
+
 class String2Date {
 
     // Convert String date data to Date then sort in descending order
@@ -56,20 +58,4 @@ class String2Date {
 
 }
 
-/*
- func getMMddyyyy(data: String) -> String {
-     
-     let dateFormatter = DateFormatter()
-  
-     dateFormatter.dateFormat = "MM dd, yyyy HH:MM:SS a"
-  
-     guard let dateData = dateFormatter.date(from: data) else { return "Error: uable to convert data parameter to Date type." }
-     
-     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-     dateFormatter.timeZone = TimeZone(abbreviation: "UTF")
-     dateFormatter.dateFormat = "MMMM dd, yyyy"
-     let output = dateFormatter.string(from: dateData)
-     
-     return output
- }
- */
+
