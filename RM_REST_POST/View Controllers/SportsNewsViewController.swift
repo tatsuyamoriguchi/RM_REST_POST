@@ -10,7 +10,9 @@ import UIKit
 import AVFoundation
 
 class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     
+    // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pickerView: UIPickerView!
 
@@ -23,6 +25,7 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     // NewsData array to filter news by date for tableView according to date selected in pickerView
     var dailyData = [NewsData]()
 
+    // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemTeal
@@ -39,6 +42,7 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    // MARK: - TableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

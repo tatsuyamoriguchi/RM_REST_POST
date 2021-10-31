@@ -12,7 +12,11 @@ extension SportsNewsViewController {
 
     func getApiCall() {
 
+        // To store publicationDate and composed headline sentence from JSON data
+        // JSON -> newsData (publicationDate, headLine, date4PickerView) -> sortedData (by date)
+        // sortedData -> dateList -> pickerView, sortedData -> dailyData -> tableView
         var newsData = [NewsData]()
+
         guard let url = URL(string: "https://ancient-wood-1161.getsandbox.com/results") else { return }
         var request = URLRequest(url: url)
  
@@ -29,10 +33,10 @@ extension SportsNewsViewController {
                 do {
 
                     let response = try JSONDecoder().decode(allResponse.self, from: data!)
-                    let f1ResultArray = response.f1Results
 
+                    let f1ResultArray = response.f1Results
                     for i in f1ResultArray {
-                        // Get MMddyyyy date to feed pickerView row data
+                        // Get MMMMddyyyy date to feed pickerView row data
                         let MMMMddyyyy = String2Date().getMMMMddyyyy(data: i.publicationDate)
                         let headLine =  "\(i.winner) wins \(i.tournament) by \(i.seconds)"
                         newsData.append(NewsData(publicationDate: i.publicationDate, date4PickerView: MMMMddyyyy, headLine: headLine))

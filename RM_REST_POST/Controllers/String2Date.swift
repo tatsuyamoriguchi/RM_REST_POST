@@ -23,7 +23,6 @@ class String2Date {
         
         let sortedData = data.sorted(by: { dateFormatter.date(from: $0.publicationDate)?.compare(dateFormatter.date(from: $1.publicationDate)!) == .orderedDescending })
         
-        
         return sortedData
     }
     

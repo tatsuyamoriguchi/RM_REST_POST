@@ -12,13 +12,11 @@ import QuartzCore
 class ViewController: UIViewController, CAAnimationDelegate, CALayerDelegate {
     
     
-    // MARK: - ANIMATION
-    // Declare a layer variable for animation
-    var mask: CALayer?
     
-    
+    // MARK: - Properties
     @IBOutlet weak var getNewsButton: UIButton!
     
+    // MARK: - Views
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemIndigo
@@ -39,7 +37,10 @@ class ViewController: UIViewController, CAAnimationDelegate, CALayerDelegate {
         
     }
    
-    
+    // MARK: - ANIMATION
+    // Declare a layer variable for animation
+    var mask: CALayer?
+
     // Create a layer
     func maskView() {
         self.mask = CALayer()

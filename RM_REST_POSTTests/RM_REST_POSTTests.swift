@@ -30,5 +30,32 @@ class RM_REST_POSTTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testgetMMMMddyyyySuccess() {
+        // Given
+        let testData = "May 9, 2020 8:09:03 PM"
+        // When
+        let result = String2Date().getMMMMddyyyy(data: testData)
+        
+        // Then
+        // Expect successful
+        XCTAssertEqual(result, "May 09, 2020")
+        
+    }
+    
+    func testgetMMMMddyyyyFail() {
+        // Given
+        let testData = "May 090, 2020 8:09:03 PM"
+        // When
+        let result = String2Date().getMMMMddyyyy(data: testData)
+        
+        // Then
+        // Expect Fail
+        XCTAssertEqual(result, "May 09, 2020")
+        
+    }
+    
+    
+
 
 }

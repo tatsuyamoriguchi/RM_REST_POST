@@ -8,23 +8,11 @@
 
 import Foundation
 
-
-// Comment to evaluaters:
-// First tried to implement protocol to merge three structs
-// (nbaResults, Tennis, and f1Results) with different types
-// but unable to figure out how to access property data to the protocol.
-// Had to add unnecessary properties to each struct to make up the merged struct
-// Thought too redundant and decided to take a simpler solution by making an array
-// of NewsData type, and add String date and String composed sentences
-// Need to practice protocol more! Lost a lot of time on this.
-
-
 struct allResponse: Codable {
     let nbaResults: [nbaResults]
     let Tennis: [Tennis]
     let f1Results: [f1Results]
 }
-
 
 
 struct nbaResults: Codable {
