@@ -75,7 +75,10 @@ extension SportsNewsViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //newsList = sortedData[row]
+        
+        dailyData = sortedData.filter { $0.date4PickerView == dateList[row] }
+        tableView.reloadData()
+
     }
 
 }

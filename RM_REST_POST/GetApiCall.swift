@@ -34,7 +34,6 @@ extension SportsNewsViewController {
                     for i in f1ResultArray {
                         // Get MMddyyyy date to feed pickerView row data
                         let MMMMddyyyy = String2Date().getMMMMddyyyy(data: i.publicationDate)
-//                        print("i.publicationDate: \(i.publicationDate)  MMMMddyyyy: \(MMMMddyyyy)")
                         let headLine =  "\(i.winner) wins \(i.tournament) by \(String(describing: i.seconds))"
                         newsData.append(NewsData(publicationDate: i.publicationDate, date4PickerView: MMMMddyyyy, headLine: headLine))
                     }
@@ -54,16 +53,9 @@ extension SportsNewsViewController {
                         newsData.append(NewsData(publicationDate: i.publicationDate, date4PickerView: MMMMddyyyy, headLine: headLine))
                     }
 
-                    // Sort data by String Date
+                    // Sort String date data by Date type
                     self.sortedData = String2Date().sortByDateString(data: newsData)
-                    
-                    for i in self.sortedData {
-                        print(i)
-                    }
-
-                    
-                    // Create a String array for pickerView rows
-                    
+                                        
                     // Reload tableView in main thread to reflect downloaded and sorted JSON data
                     DispatchQueue.main.async {
                         // Populate MMMM dd yyyy string data into dateList array for pickerView rows
@@ -74,8 +66,9 @@ extension SportsNewsViewController {
 
                         self.pickerView.reloadAllComponents()
                         
-                        // Comment to evaluators: Was getting a fatal error, "unexpectedly found nil" on tableView
-                        // since using SportsNewsViewController(), instead of self.
+                        // Use self.tableView instead of SportsNewsViewController().tableView
+                        // since this is an extension to SportsNewsViewController.
+                        // Otherwise you'll get  a fatal error, "unexpectedly found nil" on tableView
                         self.tableView.reloadData()
                     }
                 } catch {
