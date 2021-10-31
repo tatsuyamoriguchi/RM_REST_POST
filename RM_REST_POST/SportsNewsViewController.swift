@@ -32,13 +32,14 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         // Calling an extension funcion in GetApiCall.swift to get data from API
         self.getApiCall()
-//        dateSelected = dateList[0]
-//        sortedData = sortedData.filter {$0.date4PickerView == dateSelected }
-
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,11 +48,13 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SportsNewsTableViewCell
+        cell.headLineLabel.text = dailyData[indexPath.row].headLine
+        cell.dateLabel.text = dailyData[indexPath.row].publicationDate
         
-        cell.textLabel?.text = dailyData[indexPath.row].headLine
-        cell.detailTextLabel?.text = dailyData[indexPath.row].publicationDate
-        
+//        cell.textLabel?.text = dailyData[indexPath.row].headLine
+//        cell.detailTextLabel?.text = dailyData[indexPath.row].publicationDate
+//
         return cell
     }
     
