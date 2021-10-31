@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="106.47321428571428"/>
         </scene>
-        <!--Sports News View Controller-->
+        <!--Tap Headline to Listen in Audio-->
         <scene sceneID="61D-FU-NM5">
             <objects>
                 <viewController id="oNI-Wc-K1M" customClass="SportsNewsViewController" customModule="RM_REST_POST" customModuleProvider="target" sceneMemberID="viewController">
@@ -110,7 +110,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J2l-d3-YqH"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5bm-tQ-fvx"/>
+                    <navigationItem key="navigationItem" title="Tap Headline to Listen in Audio" id="5bm-tQ-fvx"/>
                     <connections>
                         <outlet property="pickerView" destination="EtL-Ps-rfF" id="0p8-Ph-SwZ"/>
                         <outlet property="tableView" destination="cLv-Mc-GbM" id="93m-Ms-FIP"/>

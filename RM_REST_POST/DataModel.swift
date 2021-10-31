@@ -28,17 +28,17 @@ struct allResponse: Codable {
 
 
 struct nbaResults: Codable {
-    let gameNumber: Int?
-    let looser: String?
-    let mvp: String?
+    let gameNumber: Int
+    let looser: String
+    let mvp: String
     let publicationDate: String
     let tournament: String
     let winner: String
 }
 
 struct Tennis: Codable {
-    let looser: String?
-    let numberOfSets: Int?
+    let looser: String
+    let numberOfSets: Int
     let publicationDate: String
     let tournament: String
     let winner: String
@@ -46,7 +46,7 @@ struct Tennis: Codable {
 
 struct f1Results: Codable {
     let publicationDate: String
-    let seconds: Double?
+    let seconds: Double
     let tournament: String
     let winner: String
 }

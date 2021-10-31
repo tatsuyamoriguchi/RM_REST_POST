@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,14 +26,14 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemTeal
-        title = "Sports News"
+        title = "Tap Headline to Hear in Audio"
 
         pickerView.dataSource = self
         pickerView.delegate = self
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        tableView.estimatedRowHeight = UITableView.automaticDimension
+        //tableView.estimatedRowHeight = UITableView.automaticDimension
         // Calling an extension funcion in GetApiCall.swift to get data from API
         self.getApiCall()
         
@@ -52,13 +53,19 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.headLineLabel.text = dailyData[indexPath.row].headLine
         cell.dateLabel.text = dailyData[indexPath.row].publicationDate
         
-//        cell.textLabel?.text = dailyData[indexPath.row].headLine
-//        cell.detailTextLabel?.text = dailyData[indexPath.row].publicationDate
-//
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        text2Speech(text: dailyData[indexPath.row].headLine)
+//        text2Speech(text: "Hello there")
+    }
+    
 }
+
+
+
+
 
 extension SportsNewsViewController: UIPickerViewDataSource {
 
