@@ -48,7 +48,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cLv-Mc-GbM">
-                                <rect key="frame" x="10" y="108" width="394" height="528"/>
+                                <rect key="frame" x="10" y="108" width="394" height="608"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="dNq-Du-s8S" detailTextLabel="20O-xr-J8G" style="IBUITableViewCellStyleSubtitle" id="BNC-yK-GXb">
@@ -78,9 +78,9 @@
                                 </prototypes>
                             </tableView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EtL-Ps-rfF">
-                                <rect key="frame" x="10" y="656" width="394" height="200"/>
+                                <rect key="frame" x="10" y="736" width="394" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="QXb-wq-jEb"/>
+                                    <constraint firstAttribute="height" constant="120" id="QXb-wq-jEb"/>
                                 </constraints>
                             </pickerView>
                         </subviews>
@@ -98,6 +98,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="5bm-tQ-fvx"/>
                     <connections>
+                        <outlet property="pickerView" destination="EtL-Ps-rfF" id="0p8-Ph-SwZ"/>
                         <outlet property="tableView" destination="cLv-Mc-GbM" id="93m-Ms-FIP"/>
                     </connections>
                 </viewController>

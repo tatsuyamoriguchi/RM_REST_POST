@@ -11,17 +11,27 @@ import UIKit
 class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pickerView: UIPickerView!
+
+    // sortedData is generated from getApiCall func of an extension in GetApiCall.swift
     var sortedData = [NewsData]()
-    
+    var dateList = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemTeal
         title = "Sports News"
+
+        pickerView.dataSource = self
+        pickerView.delegate = self
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        // Calling an extension funcion in GetApiCall.swift to get data from API
         self.getApiCall()
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,60 +47,54 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         return cell
     }
+    
 }
+
+/*
+ struct NewsData {
+     let publicationDate: String
+     let date4PickerView: String
+     let headLine: String
+ }
+ */
+
 
 
 //extension SportsNewsViewController {
-//
-//    func getApiCall() {
-//
-//        var newsData = [NewsData]()
-//        guard let url = URL(string: "https://ancient-wood-1161.getsandbox.com/results") else { return }
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-//            if error != nil {
-//                print("Error: \(String(describing: error))")
-//            } else {
-//                do {
-//
-//                    let response = try JSONDecoder().decode(allResponse.self, from: data!)
-//                    let f1ResultArray = response.f1Results
-//
-//                    for i in f1ResultArray {
-//                        let headLine =  "\(i.winner) wins \(i.tournament) by \(String(describing: i.seconds))"
-//                        newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
-//                    }
-//
-//                    let tennisResultArray = response.Tennis
-//                    for i in tennisResultArray {
-//                        let headLine =  "\(i.tournament): \(i.winner) wins against \(String(describing: i.looser)) in \(String(describing: i.numberOfSets)) sets"
-//                        newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
-//
-//                    }
-//
-//                    let nbaResultArray = response.nbaResults
-//                    for i in nbaResultArray {
-//
-//                        let headLine = "\(String(describing: i.mvp)) leads \(i.winner) to game \(String(describing: i.gameNumber)) win in the \(i.tournament)"
-//                        newsData.append(NewsData(publicationDate: i.publicationDate, headLine: headLine))
-//                    }
-//
-//                    // Sort data by String Date
-//                    self.sortedData = String2Date().sortByDateString(data: newsData)
-//
-//                    // Reload tableView in main thread to reflect downloaded and sorted JSON data
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-//                } catch {
-//                    print("Error: \(error)")
-//                }
-//            }
-//        })
-//        task.resume()
+//    
+//    func extractDate4Picker(data: [NewsData]) -> Array<String> {
+//        var output = [String]()
+//        for i in data {
+//            //if output.contains(i.date4PickerView) == false {
+//            print("hello")
+//            print(i.date4PickerView)
+//            output.append(i.date4PickerView)
+//            //}
+//        }
+//        print("output: \(output)")
+//        return output
 //    }
 //}
+
+
+
+
+extension SportsNewsViewController: UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dateList.count
+    }
+}
+
+extension SportsNewsViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return dateList[row]
+    }
+
+}
+

@@ -8,6 +8,17 @@
 
 import Foundation
 
+
+// Comment to evaluaters:
+// First tried to implement protocol to merge three structs
+// (nbaResults, Tennis, and f1Results) with different types
+// but unable to figure out how to access property data to the protocol.
+// Had to add unnecessary properties to each struct to make up the merged struct
+// Thought too redundant and decided to take a simpler solution by making an array
+// of NewsData type, and add String date and String composed sentences
+// Need to practice protocol more! Lost a lot of time on this.
+
+
 struct allResponse: Codable {
     let nbaResults: [nbaResults]
     let Tennis: [Tennis]
@@ -43,12 +54,15 @@ struct f1Results: Codable {
 
 struct NewsData {
     let publicationDate: String
+    let date4PickerView: String
     let headLine: String
 }
 
 
 
 /*
+ Compose sentences in UI for each sports category as follows:
+ 
  F1
  - Lewis Hamilton wins Silverstone Grand Prix by 5.856 seconds
  "\(winner) wins \(tounament) by \(seconds)"
@@ -61,14 +75,14 @@ struct NewsData {
  NBA
  - Lebron James leads Lakers to game 4 win in the NBA playoffs
  "\(mvp) leads \(winner) to game \(gameNumber) win in the \(tournament)"
-
-
-
  */
 
 
 
 /*
+ JSON format data by POST
+ "https://ancient-wood-1161.getsandbox.com/results"
+ 
  json: ["f1Results": <__NSArrayI 0x6000033212c0>(
  {
      publicationDate = "May 9, 2020 8:09:03 PM";
