@@ -61,10 +61,13 @@ extension SportsNewsViewController {
                     
                     // Reload tableView in main thread to reflect downloaded and sorted JSON data
                     DispatchQueue.main.async {
-                        // Comment to evaluators: Was getting a fatal error, "unexpectedly found nil" on tableView
-                        // since using SportsNewsViewController(), instead of self.
+                        
                         self.dateList = String2Date().extractDate4Picker(data: self.sortedData)
                         print("self.dateList: \(self.dateList)")
+                        self.pickerView.reloadAllComponents()
+
+                        // Comment to evaluators: Was getting a fatal error, "unexpectedly found nil" on tableView
+                        // since using SportsNewsViewController(), instead of self.
                         self.tableView.reloadData()
                     }
                 } catch {

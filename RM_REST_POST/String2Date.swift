@@ -45,12 +45,12 @@ class String2Date {
     
     func extractDate4Picker(data: [NewsData]) -> Array<String> {
           var output = [String]()
-          for i in data {
-              //if output.contains(i.date4PickerView) == false {
-              output.append(i.date4PickerView)
-              //}
-          }
-          print("output: \(output)")
+        for i in data {
+            if output.contains(i.date4PickerView) == false {
+                output.append(i.date4PickerView)
+            }
+        }
+        
           return output
       }
 

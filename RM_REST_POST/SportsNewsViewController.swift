@@ -28,8 +28,11 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        
         // Calling an extension funcion in GetApiCall.swift to get data from API
         self.getApiCall()
+            
+
         
         
     }
