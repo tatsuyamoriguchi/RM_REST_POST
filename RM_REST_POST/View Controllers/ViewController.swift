@@ -35,6 +35,7 @@ class ViewController: UIViewController, CAAnimationDelegate, CALayerDelegate {
         //getNewsButton.frame = CGRect(x: 0, y: 0, width: 300, height: 60)
         getNewsButton.layer.cornerRadius = 20
         
+        // Ad speech
         Text2Speech().text2Speech(text: "Sleep apnea affects 1 in 3 people. Visit www dot ResMed dot com for more information.")
         
         

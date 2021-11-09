@@ -24,6 +24,7 @@ class DetailsViewController: UIViewController {
         headLineLabel.text = headLine
         dateLabel.text = dateString
         
+        // Audio speech of headline
         Text2Speech().text2Speech(text: headLine!)
             
         
