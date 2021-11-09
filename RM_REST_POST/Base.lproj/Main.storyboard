@@ -117,11 +117,60 @@
                     <connections>
                         <outlet property="pickerView" destination="EtL-Ps-rfF" id="0p8-Ph-SwZ"/>
                         <outlet property="tableView" destination="cLv-Mc-GbM" id="93m-Ms-FIP"/>
+                        <segue destination="ELk-7b-9Ia" kind="show" identifier="toDetails" id="MaN-x2-xkO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gp-3j-0aZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2021.7391304347827" y="92.410714285714278"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="EMn-eJ-tvg">
+            <objects>
+                <viewController id="ELk-7b-9Ia" customClass="DetailsViewController" customModule="RM_REST_POST" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PD8-ie-t2a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLI-ql-Z9S">
+                                <rect key="frame" x="20" y="108" width="374" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Tyc-cM-Xmi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-Z6-7GO">
+                                <rect key="frame" x="20" y="149" width="374" height="87"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="87" id="CBX-bP-k8N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hF7-Z6-7GO" firstAttribute="leading" secondItem="VLQ-dm-ESH" secondAttribute="leading" constant="20" id="5DU-kT-ntD"/>
+                            <constraint firstItem="aLI-ql-Z9S" firstAttribute="leading" secondItem="VLQ-dm-ESH" secondAttribute="leading" constant="20" id="Ax9-Ip-AS7"/>
+                            <constraint firstItem="aLI-ql-Z9S" firstAttribute="top" secondItem="VLQ-dm-ESH" secondAttribute="top" constant="20" id="Icw-Az-1H2"/>
+                            <constraint firstItem="hF7-Z6-7GO" firstAttribute="top" secondItem="aLI-ql-Z9S" secondAttribute="bottom" constant="20" id="QAi-6s-fOw"/>
+                            <constraint firstItem="VLQ-dm-ESH" firstAttribute="trailing" secondItem="hF7-Z6-7GO" secondAttribute="trailing" constant="20" id="aIu-of-AlQ"/>
+                            <constraint firstItem="VLQ-dm-ESH" firstAttribute="trailing" secondItem="aLI-ql-Z9S" secondAttribute="trailing" constant="20" id="uQY-2U-uVc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VLQ-dm-ESH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BXs-ma-p7K"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="aLI-ql-Z9S" id="5BB-LH-Grb"/>
+                        <outlet property="headLineLabel" destination="hF7-Z6-7GO" id="aGX-ed-X2N"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T2d-aw-CKv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2921.739130434783" y="84.375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TOo-gI-jxO">

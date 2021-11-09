@@ -9,9 +9,10 @@
 import Foundation
 import AVFoundation
 
-extension SportsNewsViewController {
+//extension SportsNewsViewController {
+class Text2Speech {
     
-    //
+    // Play audio reading text string
     func text2Speech(text: String) {
         
         // text to speech

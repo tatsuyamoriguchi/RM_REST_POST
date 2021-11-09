@@ -11,6 +11,7 @@ import AVFoundation
 
 class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var selectedIndexPath: IndexPath?
     
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
@@ -61,14 +62,33 @@ class SportsNewsViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        text2Speech(text: dailyData[indexPath.row].headLine)
-//        text2Speech(text: "Hello there")
+ 
+        
+        selectedIndexPath = indexPath
+        performSegue(withIdentifier: "toDetails", sender: self)
+        
     }
     
+
+
+// Segue
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       // Get the new view controller using segue.destination.
+    if segue.identifier == "toDetails" {
+        let detailsVC = segue.destination as! DetailsViewController
+        
+    // Pass the selected object to the new view controller.
+        
+        let int0 = selectedIndexPath?[0]
+        let int1 = selectedIndexPath?[1]
+  
+        detailsVC.headLine = dailyData[int1!].headLine
+        detailsVC.dateString = dailyData[int1!].publicationDate
+
+
+    }
+   }
 }
-
-
-
 
 // MARK: - UIPickerView
 extension SportsNewsViewController: UIPickerViewDataSource {
