@@ -51,6 +51,8 @@ class ViewController: UIViewController, CAAnimationDelegate, CALayerDelegate {
         self.mask!.contents = UIImage(named: "resmed-logo-transparency")!.cgImage
         self.mask!.bounds = CGRect(x: 0, y: 0, width: 100, height: 100)
         self.mask!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        // Swift version: 5.4. Every UIView has an anchor point, which is the point around which animations take place. Usually this is the center of the view – X:0.5 Y:0.5 – which means if you rotate a view it will spin around its center.
+        
         self.mask!.position = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height/2)
         view.layer.mask = mask
     }

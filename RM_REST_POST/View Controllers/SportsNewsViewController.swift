@@ -79,7 +79,7 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     // Pass the selected object to the new view controller.
         
-        let int0 = selectedIndexPath?[0]
+        //let int0 = selectedIndexPath?[0]
         let int1 = selectedIndexPath?[1]
   
         detailsVC.headLine = dailyData[int1!].headLine

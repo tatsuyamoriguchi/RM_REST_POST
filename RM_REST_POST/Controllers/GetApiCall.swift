@@ -30,10 +30,11 @@ extension SportsNewsViewController {
             if error != nil {
                 print("Error: \(String(describing: error))")
             } else {
+                
                 do {
-
+                    
                     let response = try JSONDecoder().decode(allResponse.self, from: data!)
-
+                    
                     let f1ResultArray = response.f1Results
                     for i in f1ResultArray {
                         // Get MMMMddyyyy date to feed pickerView row data
@@ -41,25 +42,25 @@ extension SportsNewsViewController {
                         let headLine =  "\(i.winner) wins \(i.tournament) by \(i.seconds)"
                         newsData.append(NewsData(publicationDate: i.publicationDate, date4PickerView: MMMMddyyyy, headLine: headLine))
                     }
-
+                    
                     let tennisResultArray = response.Tennis
                     for i in tennisResultArray {
                         let MMMMddyyyy = String2Date().getMMMMddyyyy(data: i.publicationDate)
                         let headLine =  "\(i.tournament): \(i.winner) wins against \(i.looser) in \(i.numberOfSets) sets"
                         newsData.append(NewsData(publicationDate: i.publicationDate, date4PickerView: MMMMddyyyy, headLine: headLine))
-
+                        
                     }
-
+                    
                     let nbaResultArray = response.nbaResults
                     for i in nbaResultArray {
                         let MMMMddyyyy = String2Date().getMMMMddyyyy(data: i.publicationDate)
                         let headLine = "\(i.mvp) leads \(i.winner) to game \(i.gameNumber) win in the \(i.tournament)"
                         newsData.append(NewsData(publicationDate: i.publicationDate, date4PickerView: MMMMddyyyy, headLine: headLine))
                     }
-
+                    
                     // Sort String date data by Date type
                     self.sortedData = String2Date().sortByDateString(data: newsData)
-                                        
+                    
                     // Reload tableView in main thread to reflect downloaded and sorted JSON data
                     DispatchQueue.main.async {
                         // Populate MMMM dd yyyy string data into dateList array for pickerView rows
@@ -67,7 +68,7 @@ extension SportsNewsViewController {
                         // Create dailyData by filtering sortedData by date selected. Select dateList[0] date
                         // as default which is the most recent date.
                         self.dailyData = self.sortedData.filter { $0.date4PickerView == self.dateList[0] }
-
+                        
                         self.pickerView.reloadAllComponents()
                         
                         // Use self.tableView instead of SportsNewsViewController().tableView

@@ -17,22 +17,12 @@
 		8C36E8E82728EA4200CB1B0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36E8E72728EA4200CB1B0F /* AppDelegate.swift */; };
 		8C36E8EA2728EAC200CB1B0F /* Mobile_Software_Challenge.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8C36E8E92728EAC200CB1B0F /* Mobile_Software_Challenge.pdf */; };
 		8C6C5DEA272DF0BF0098419E /* GetApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C5DE9272DF0BF0098419E /* GetApiCall.swift */; };
-		8C6C5DEB272DF0BF0098419E /* GetApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C5DE9272DF0BF0098419E /* GetApiCall.swift */; };
 		8C6C5DF0272E87990098419E /* SportsNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C5DEF272E87990098419E /* SportsNewsTableViewCell.swift */; };
-		8C6C5DF1272E87990098419E /* SportsNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C5DEF272E87990098419E /* SportsNewsTableViewCell.swift */; };
 		8C6C5DF3272E995F0098419E /* Text2Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C5DF2272E995F0098419E /* Text2Speech.swift */; };
-		8C6C5DF4272E995F0098419E /* Text2Speech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C5DF2272E995F0098419E /* Text2Speech.swift */; };
-		8C6C5DFA272EB44F0098419E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00E61B2728C15100D83515 /* ViewController.swift */; };
 		8C6D9B6F272CBF5B00CFB8FC /* SportsNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D9B6E272CBF5B00CFB8FC /* SportsNewsViewController.swift */; };
-		8C6D9B70272CBF5B00CFB8FC /* SportsNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D9B6E272CBF5B00CFB8FC /* SportsNewsViewController.swift */; };
 		8C74C1C5272C8D10005879BF /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1C4272C8D10005879BF /* DataModel.swift */; };
 		8C74C1C7272C8D8B005879BF /* String2Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1C6272C8D8B005879BF /* String2Date.swift */; };
-		8C74C1C8272C8D8B005879BF /* String2Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1C6272C8D8B005879BF /* String2Date.swift */; };
-		8C7A9F00272F2CBC00BBC2B5 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74C1C4272C8D10005879BF /* DataModel.swift */; };
-		8C7A9F01272F2D3F00BBC2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C36E8E72728EA4200CB1B0F /* AppDelegate.swift */; };
-		8C7A9F02272F2D4200BBC2B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C00E6192728C15100D83515 /* SceneDelegate.swift */; };
 		8C7A9F03272F2D5000BBC2B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C00E61D2728C15100D83515 /* Main.storyboard */; };
-		8C7A9F04272F2D5500BBC2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C00E6202728C15800D83515 /* Assets.xcassets */; };
 		8C7A9F05272F2D5900BBC2B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C00E6222728C15800D83515 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -260,7 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C7A9F05272F2D5900BBC2B5 /* LaunchScreen.storyboard in Resources */,
-				8C7A9F04272F2D5500BBC2B5 /* Assets.xcassets in Resources */,
 				8C7A9F03272F2D5000BBC2B5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,15 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C00E62F2728C15800D83515 /* RM_REST_POSTTests.swift in Sources */,
-				8C6C5DEB272DF0BF0098419E /* GetApiCall.swift in Sources */,
-				8C6D9B70272CBF5B00CFB8FC /* SportsNewsViewController.swift in Sources */,
-				8C7A9F01272F2D3F00BBC2B5 /* AppDelegate.swift in Sources */,
-				8C6C5DF4272E995F0098419E /* Text2Speech.swift in Sources */,
-				8C7A9F02272F2D4200BBC2B5 /* SceneDelegate.swift in Sources */,
-				8C6C5DFA272EB44F0098419E /* ViewController.swift in Sources */,
-				8C7A9F00272F2CBC00BBC2B5 /* DataModel.swift in Sources */,
-				8C74C1C8272C8D8B005879BF /* String2Date.swift in Sources */,
-				8C6C5DF1272E87990098419E /* SportsNewsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
